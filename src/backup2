@@ -1,0 +1,66 @@
+import { StackNavigator, } from 'react-navigation';
+import DashBoard from './pages/DashBoard';
+import Navigator_tab from '../src/components/Navigator_tab';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import helpers from "./components/helpers";
+
+// const Navigation =
+//   createAppContainer(
+//     createStackNavigator({
+//       Navigator_tab: Navigator_tab,
+//       Main: DashBoard,
+//     }, {
+//       headerMode: 'screen',
+//       cardStyle: { backgroundColor: '#044573' },
+//     })
+//   );
+class Routes extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      actionWelcome: ''
+    }
+
+    // this.setState((state) => {
+    //   return {
+    //     'actionWelcome': ''// await helpers.getArrayStorage('boards');
+    //   }
+    // })
+
+  }
+
+  async componentDidMount() {
+    this.setState(async () => {
+      let board = await helpers.getArrayStorage('boards');
+
+      let flag = board.length ? true : false;
+//      console.log(flag);
+      return { 'actionWelcome': flag };
+    });
+  }
+
+
+  showLogin(props) {
+    // var boards = await helpers.getArrayStorage('boards');
+    // var boards = true;
+    if (this.state.actionWelCome) {
+      return (
+        <Navigation />
+      )
+    }
+    else {
+      return (
+        <Navigation />
+      )
+    }
+
+  }
+  render() {
+    return this.showLogin(this.props)
+  }
+}
+
+export default Routes;
